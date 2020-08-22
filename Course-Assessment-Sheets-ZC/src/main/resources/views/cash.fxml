@@ -112,7 +112,7 @@
                               <Font size="39.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="courseInfoScrollPane" prefHeight="283.0" prefWidth="726.0">
+                        <ScrollPane fx:id="courseInfoScrollPane" prefHeight="350.0" prefWidth="1240.0">
                            <content>
                               <VBox prefHeight="1500.0" prefWidth="849.0" spacing="10.0">
                                  <children>

@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -53,7 +54,6 @@ public class CoursesBoundary implements Initializable {
             CoursesController cont = new CoursesController();
             cont.addCourse(path);
         });
-
     }
 
     @FXML
@@ -66,6 +66,7 @@ public class CoursesBoundary implements Initializable {
     @FXML
     void remCourseButtonClicked(ActionEvent actionEvent) {
         courseListTableView.getItems().removeAll(courseListTableView.getSelectionModel().getSelectedItem());
+        
         String path = ".." + File.separator + "Course-Assessment-Sheets-ZC" + File.separator + "src" + File.separator
                 + "main" + File.separator + "Data" + File.separator + mainCoursePath;
         
@@ -74,7 +75,7 @@ public class CoursesBoundary implements Initializable {
     }
 
     @FXML
-    void nextButtonClicked(ActionEvent actionEvent){
+    void nextButtonClicked(ActionEvent actionEvent) throws IOException{
         //update the course list with all the removes and adds to the filesystem
         //CoursesController.updateCourseList(userCourseList);
 
@@ -84,6 +85,16 @@ public class CoursesBoundary implements Initializable {
         //open it in the cash app.
         //TO DO
         // String path = userPath.get();
+    	
+        Stage stage = new Stage();
+        stage.setTitle("Le CASh");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/cash.fxml"));
+        Parent root = loader.load();
+        Boundary boundary = loader.getController();
+        boundary.setStage(stage);
+        stage.setScene(new Scene(root));
+        prevStage.close();
+        stage.show();
     }
 
     public void setCoursesPath(String path) {
