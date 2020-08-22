@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import classes.AlertBox;
 import classes.login.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,9 +49,9 @@ public class LoginBoundary implements Initializable {
         boolean flag = cont.checkUsernameExistance(username);
         if (flag == true) {
             System.out.println("flag is true");
-            classes.AlertBox.display("Data Error", "Username Already Exists\n Please Enter a New one");
-
-        } else if (flag == false) {
+            AlertBox.display("Data Error", "Username Already Exists\n Please Enter a New one");
+            
+        } else {
             System.out.println("flag is false");
             Boolean isSuccessful = cont.addingNewUser(username, password);
             if (isSuccessful) {
@@ -57,8 +59,8 @@ public class LoginBoundary implements Initializable {
                 Stage stage = new Stage();
                 stage.setTitle("User Courses");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("views/courses.fxml"));
-                Parent root = (Parent) loader.load();
-                CoursesBoundary boundary = (CoursesBoundary) loader.getController();
+                Parent root = loader.load();
+                CoursesBoundary boundary = loader.getController();
                 boundary.setCoursesPath(path);
                 boundary.setStage(stage);
                 stage.setScene(new Scene(root));
@@ -94,8 +96,8 @@ public class LoginBoundary implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("User Courses");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("views/courses.fxml"));
-            Parent root = (Parent) loader.load();
-            CoursesBoundary boundary = (CoursesBoundary) loader.getController();
+            Parent root = loader.load();
+            CoursesBoundary boundary = loader.getController();
             boundary.setCoursesPath(path);
             boundary.setStage(stage);
             stage.setScene(new Scene(root));

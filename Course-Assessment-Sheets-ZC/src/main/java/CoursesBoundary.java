@@ -20,7 +20,22 @@ import javafx.stage.Stage;
 import javafx.scene.control.TableView;
 
 public class CoursesBoundary implements Initializable {
+	
     private String mainCoursePath;
+    
+    private Stage prevStage;
+    
+    @FXML
+    private Button addCourseButton;
+    @FXML
+    private Button remCourseButton;
+    @FXML 
+    private Button nextButton;
+    @FXML
+    private TableView<StrRow> courseListTableView;
+    @FXML
+    private TableColumn<StrRow, String> courseTableColumn;
+    
 
     @Override
     // Called as soon as the fxml is loaded
@@ -70,18 +85,6 @@ public class CoursesBoundary implements Initializable {
         //TO DO
         // String path = userPath.get();
     }
-
-    @FXML
-    private Button addCourseButton;
-    @FXML
-    private Button remCourseButton;
-    @FXML 
-    private Button nextButton;
-    @FXML
-    private TableView<StrRow> courseListTableView;
-    @FXML
-    private TableColumn<StrRow, String> courseTableColumn;
-    private Stage prevStage;
 
     public void setCoursesPath(String path) {
         System.out.println("Path passed :" + path);

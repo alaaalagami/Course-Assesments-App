@@ -41,14 +41,13 @@ public class LoginController {
         }
         reader.close();
         System.out.println("user not exists");
-
         return false;
     }
 
     public boolean checkUsernamePasswordExistance(String username, String password)
             throws FileNotFoundException, IOException { // return true if
         // the user name and password are correct
-        // fasle if not
+        // false if not
         BufferedReader reader;
         reader = new BufferedReader(new FileReader(
                 ".." + File.separator + "Course-Assessment-Sheets-ZC" + File.separator + "src" + File.separator + "main"
@@ -88,8 +87,9 @@ public class LoginController {
         try (FileWriter fw = new FileWriter(".." + File.separator + "Course-Assessment-Sheets-ZC" + File.separator
                 + "src" + File.separator + "main" + File.separator + "Data" + File.separator + "UsernamesOnly.txt",
                 true); BufferedWriter bw = new BufferedWriter(fw); PrintWriter out = new PrintWriter(bw)) {
+        	
             out.println(username);
-
+            
         } catch (IOException e) {
             // exception handling left as an exercise for the reader
         }
@@ -116,10 +116,10 @@ public class LoginController {
         if (bool) {
             System.out.println("Directory created successfully" + file.getAbsolutePath());
             currentUser = new User(path);
-            // return Optional.of(file.getAbsolutePath());
+ 
         } else {
-            System.out.println("Sorry couldnt create specified directory");
-            // return Optional.empty();
+            System.out.println("Sorry couldn't create specified directory");
+          
         }
         return bool;
 

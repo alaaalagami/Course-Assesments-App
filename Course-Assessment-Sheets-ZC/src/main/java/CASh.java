@@ -24,9 +24,9 @@ public class CASh extends Application {
         // All other functionality originates from Controller.java
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("views/login.fxml"));
-        Parent root = (Parent) loader.load();
+        Parent root = loader.load();
 
-        LoginBoundary boundary = (LoginBoundary) loader.getController();
+        LoginBoundary boundary = loader.getController();
 
         boundary.setStage(primaryStage);
         primaryStage.setTitle("Course Assessment Sheet (CASh)");
