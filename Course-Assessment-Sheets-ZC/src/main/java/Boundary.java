@@ -131,10 +131,9 @@ public class Boundary implements Initializable{
         VBox.setVgrow(courseInfoScrollPane, Priority.ALWAYS);
         VBox.setVgrow(definitionsScrollPane, Priority.ALWAYS);
         VBox.setVgrow(topicsTabVbox, Priority.ALWAYS);
-        
-        // Define the getting behavior for the mandatory Table of the Entry column 
         VBox.setVgrow(browser, Priority.ALWAYS);
         VBox.setVgrow(syllabusBPane, Priority.ALWAYS);
+        
         // Define the getting behavior for the mandatory Table of the Entry column
         //Get the string of the first column see StrRow.java
         mandEntry.setCellValueFactory(p -> {return p.getValue().getStr(0);});

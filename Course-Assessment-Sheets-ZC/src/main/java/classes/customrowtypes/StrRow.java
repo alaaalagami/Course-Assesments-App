@@ -3,6 +3,7 @@ import javafx.beans.property.SimpleStringProperty;
 // import javafx.beans.value.*;
 import javafx.collections.*;
 public class StrRow{
+	
     private ObservableList<SimpleStringProperty> strs;
     
 

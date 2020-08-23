@@ -43,10 +43,12 @@ public class CoursesBoundary implements Initializable {
     public void initialize(URL u, ResourceBundle rb) {
         // Students tab
         courseListTableView.setEditable(true);
+
         courseTableColumn.setCellValueFactory((CellDataFeatures<StrRow, String> p) -> {
             return p.getValue().getStr(0);
         });
         Utils.makeTableColumnEdittableTBox(courseTableColumn, 0);
+        
         courseTableColumn.setOnEditCommit(t -> {
             ((StrRow) t.getTableView().getItems().get(t.getTablePosition().getRow())).setStr(0, t.getNewValue());
             String path = mainCoursePath + File.separator + courseListTableView.getSelectionModel().getSelectedItem().getStr(0).get();

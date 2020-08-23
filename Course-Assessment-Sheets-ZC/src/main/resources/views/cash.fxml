@@ -112,9 +112,9 @@
                               <Font size="39.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="courseInfoScrollPane" prefHeight="350.0" prefWidth="1240.0">
+                        <ScrollPane fx:id="courseInfoScrollPane">
                            <content>
-                              <VBox prefHeight="1500.0" prefWidth="849.0" spacing="10.0">
+                              <VBox prefHeight="1177.0" prefWidth="850.0" spacing="10.0">
                                  <children>
                                     <Label text="Mandatory Information" textFill="#146194">
                                        <font>
@@ -151,7 +151,7 @@
                                           </ComboBox>
                                        </children>
                                     </HBox>
-                                    <TableView fx:id="mantTableView" editable="true">
+                                    <TableView fx:id="mantTableView" editable="true" prefWidth="830.0">
                                        <columns>
                                           <TableColumn fx:id="mandEntry" editable="false" prefWidth="129.0" sortable="false" text="Entry" />
                                           <TableColumn fx:id="mandValue" prefWidth="580.0" sortable="false" text="Value" />
@@ -182,7 +182,7 @@
                                           </Spinner>
                                        </children>
                                     </HBox>
-                                    <TableView fx:id="optionalTableView" editable="true">
+                                    <TableView fx:id="optionalTableView" editable="true" VBox.vgrow="ALWAYS">
                                        <columns>
                                           <TableColumn fx:id="optionalEntry" editable="false" prefWidth="129.0" sortable="false" text="Entry" />
                                           <TableColumn fx:id="optionalValue" prefWidth="580.0" sortable="false" text="Value" />
@@ -236,6 +236,11 @@
                                           <Button fx:id="rmLastNote" mnemonicParsing="false" onAction="#rmLastNoteClicked" text="Remove Last Note" />
                                        </children>
                                     </HBox>
+                                    <Button fx:id="basicSubmit" mnemonicParsing="false" onAction="#basicSubmitClicked" text="Submit">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -243,14 +248,6 @@
                               </VBox>
                            </content>
                         </ScrollPane>
-                        <Button fx:id="basicSubmit" mnemonicParsing="false" onAction="#basicSubmitClicked" text="Submit">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </Button>
                      </children>
                   </VBox>
                </content>
