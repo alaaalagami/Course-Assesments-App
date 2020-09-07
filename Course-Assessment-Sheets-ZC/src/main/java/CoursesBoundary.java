@@ -2,6 +2,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
 
 import classes.Utils;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.stage.Stage;
 import javafx.scene.control.TableView;
+
 
 public class CoursesBoundary implements Initializable {
 	
@@ -55,6 +57,15 @@ public class CoursesBoundary implements Initializable {
             System.out.println("Path passed :" + path);
             CoursesController cont = new CoursesController();
             cont.addCourse(path);
+            
+            try {
+				SheetsAPI.CreateNewSheet(courseListTableView.getSelectionModel().getSelectedItem().getStr(0).get());
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (GeneralSecurityException e) {
+				e.printStackTrace();
+			}
+            
         });
     }
 
