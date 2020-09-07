@@ -61,6 +61,7 @@ public class LoginBoundary implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("views/courses.fxml"));
                 Parent root = loader.load();
                 CoursesBoundary boundary = loader.getController();
+                boundary.setUsername(username);
                 boundary.setCoursesPath(path);
                 boundary.setStage(stage);
                 stage.setScene(new Scene(root));
@@ -99,6 +100,7 @@ public class LoginBoundary implements Initializable {
             Parent root = loader.load();
             CoursesBoundary boundary = loader.getController();
             boundary.setCoursesPath(path);
+            boundary.setUsername(username);
             boundary.setStage(stage);
             stage.setScene(new Scene(root));
             prevStage.close();
