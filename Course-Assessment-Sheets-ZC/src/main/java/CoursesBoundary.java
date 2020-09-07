@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import classes.Utils;
@@ -28,6 +29,10 @@ public class CoursesBoundary implements Initializable {
     
     private Stage prevStage;
     
+    private String Username;
+    
+    private SheetsAPI sheetsAPI;
+    
     @FXML
     private Button addCourseButton;
     @FXML
@@ -39,32 +44,55 @@ public class CoursesBoundary implements Initializable {
     @FXML
     private TableColumn<StrRow, String> courseTableColumn;
     
-
+    
     @Override
     // Called as soon as the fxml is loaded
     public void initialize(URL u, ResourceBundle rb) {
         // Students tab
         courseListTableView.setEditable(true);
-
+        List<String> currentCourses = null;
+    	try {
+			sheetsAPI = new SheetsAPI();
+	        currentCourses = sheetsAPI.getCoursesByUsername("moemen");
+	        System.out.println(currentCourses);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (GeneralSecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
         courseTableColumn.setCellValueFactory((CellDataFeatures<StrRow, String> p) -> {
             return p.getValue().getStr(0);
         });
         Utils.makeTableColumnEdittableTBox(courseTableColumn, 0);
         
+        //Search all sheets and post courses which match the username to the table
+		for (String course: currentCourses) {
+			 StrRow new_course = new StrRow(course);
+			 courseListTableView.getItems().add(new_course);
+		}
+        
+        //Called when a cell is edited
         courseTableColumn.setOnEditCommit(t -> {
             ((StrRow) t.getTableView().getItems().get(t.getTablePosition().getRow())).setStr(0, t.getNewValue());
-            String path = mainCoursePath + File.separator + courseListTableView.getSelectionModel().getSelectedItem().getStr(0).get();
+            String courseID = courseListTableView.getSelectionModel().getSelectedItem().getStr(0).get();
+            String path = mainCoursePath + File.separator + courseID;
             System.out.println("Path passed :" + path);
             CoursesController cont = new CoursesController();
-            cont.addCourse(path);
-            
-            try {
-				SheetsAPI.CreateNewSheet(courseListTableView.getSelectionModel().getSelectedItem().getStr(0).get());
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (GeneralSecurityException e) {
-				e.printStackTrace();
-			}
+            cont.addCourse(path); 
+				try {
+					sheetsAPI.CreateNewSheet(courseID);
+					sheetsAPI.setInstructorUsername(Username, courseID);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (GeneralSecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
             
         });
     }
@@ -117,6 +145,10 @@ public class CoursesBoundary implements Initializable {
 
     public void setStage(Stage prevStage) {
         this.prevStage = prevStage;
+    }
+    
+    public void setUsername(String username) {
+        this.Username = username;
     }
 
 }
