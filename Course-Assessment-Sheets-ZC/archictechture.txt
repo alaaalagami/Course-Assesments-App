@@ -1,0 +1,7 @@
+Libraries used:
+JavaFX 
+iText
+Swing
+Tools used: 
+scene builder
+gradle 
