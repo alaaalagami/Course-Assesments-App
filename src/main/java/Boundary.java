@@ -1226,7 +1226,7 @@ public class Boundary implements Initializable{
         sActionsTableView.getItems().setAll(InitialValues.getInitialSActionsList());
         handleclose();
       }
-    // Number of added notes in the Optonal Info.
+    // Number of added notes in the Optional Info.
     int n_notes=0;
     int n_tps=2;
     int n_clos=2;
